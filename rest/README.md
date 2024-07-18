@@ -88,7 +88,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 #### Usage
 ```bash
->>> curl -X POST "http://1.2.3.4/exampleService/next/in-range" \
+>>> curl -X POST "http://1.2.3.4/exampleService/next/uint32" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
 -d '{"seed": "QUFBQQ=="}'
@@ -249,7 +249,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 #### Usage
 ```bash
->>> curl -X POST "http://1.2.3.4/exampleService/next/uint256" \
+>>> curl -X POST "http://1.2.3.4/exampleService/next/in-range" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
 -d '{"seed": "QUFBQQ==", "min": "AA==", "max": "/////w=="}'

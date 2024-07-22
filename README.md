@@ -204,30 +204,30 @@ uniform_bytes     = 0c09746a3bde39a0992138f3715601cbda6a54b516c50982da0e8fb5e915
 ## Expand Beacon - Extensible Hash
 ### Shake128
 ```text
-DST = BeaconExtenderKAT-v01-with-xof-SHAKE128
+DST = BeaconExtenderKAT-v01-XofSHAKE128
 hash = SHAKE128
 
 randomness_beacon = 0000000000000000000000000000000000000000000000000000000000000000
 len_in_bytes      = 32
-uniform_bytes     = acef075354a00f78d4be23267c6a1febf1e65b8813c167813f0385d4229fea7b
+uniform_bytes     = 421395f0db433569f8393fd3e2255b9dbaafa67bbe5441e6bc1601ff059d4aa7
 
 randomness_beacon = 0a0b0c0d0e0f000102030405060708090a0b0c0d0e0f00010203040506070809
 len_in_bytes      = 1
-uniform_bytes     = 84
+uniform_bytes     = e9
 
 randomness_beacon = 0a0a000a0a010a0a020a0a030a0a040a0a050a0a060a0a070a0a080a0a090a0b
 len_in_bytes      = 4
-uniform_bytes     = dcf9bb78
+uniform_bytes     = a1e606fe
 
-randomness_beacon = c551191 A;6c97b90660eee5bd2e678899cd6946cdd5404d235a127067bfbd4758f
+randomness_beacon = c5511916c97b90660eee5bd2e678899cd6946cdd5404d235a127067bfbd4758f
 len_in_bytes      = 32
-uniform_bytes     = 06ce9bcd92153bd92bf5279490ff2d1c299e61554b470fc29afe1d8def434472
+uniform_bytes     = 35f3a3ac0dbd26f051578c22ab68304ffa98cd199d68ecbfe7f2de0e94816fef
 
 randomness_beacon = 8876517e60e0a79c4c3ef2877df1f19a6a76aff3550c19a9e9e088a41f813b14
 len_in_bytes      = 64
-uniform_bytes     = 340323b84c617b0f9da3ca314f0a81d980de69a8767603cf9fa9c61338e91d99fcf76e7001b67d85560e3442deea90722855cb706c321c3599b3df8d0b6ed515
+uniform_bytes     = c765f1efc4e3623a4f847db39edc8286b7b0db2ed6cf196cb5ea71345359799997f01cec05036303310aec3a61318bc4eb34711508ddb56621623a6f64702660
 
 randomness_beacon = b2308b0969926631e0d74053ff20b8d167eed55b21803f4d85475b838aee8a54
 len_in_bytes      = 68
-uniform_bytes     = 7f03175a5e7be6024b6373c1180d569b3df507388770c71de8e3db01b9f0904edf249a8b2c94810142893f2326c6632138ed069e9eaf68fb7014c8e8a1182cd128099f16
+uniform_bytes     = a5ebddb90cb0c8bd1661de820f6e79191d67f57158e521204add5ced8d17f3e30ce7decf43dd18cfa3740017605a8abb12ff9023e0d1dfab42b7c723aacdc8ad47bb53f9
 ```

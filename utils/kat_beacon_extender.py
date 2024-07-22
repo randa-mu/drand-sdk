@@ -8,6 +8,7 @@ from Crypto.Hash import keccak
 from Crypto.Hash import SHAKE128
 from Crypto.Util.strxor import strxor
 
+
 # Reference implementation used to expand a randomness beacon using a fixed-output hash function
 def expand_beacon_fixedhash(hasher, randomness_beacon, DST, len_in_bytes):
     def H(m):
@@ -50,6 +51,7 @@ def expand_beacon_xof(hasher, randomness_beacon, DST, len_in_bytes):
     h = hasher.new(msg_prime)
     return h.read(len_in_bytes)
 
+
 # Keccak-256, SHAKE128
 hash_functions = [
     {
@@ -64,12 +66,12 @@ hash_functions = [
     },
 ]
 
+
 def print_kats(language):
     for hash_fn in hash_functions:
-        expand_fn_name = (
-            b"-with-xof" if hash_fn["expand_fn"] == expand_beacon_xof else b""
-        )
-        DST = b"BeaconExtenderKAT-v01" + expand_fn_name + b"-" + hash_fn["hash_name"]
+        fn_name = b"Xof" if hash_fn["expand_fn"] == expand_beacon_xof else b""
+
+        DST = b"BeaconExtenderKAT-v01-" + fn_name + hash_fn["hash_name"]
         kat_inputs = [
             {
                 "randomness_beacon": bytes.fromhex(

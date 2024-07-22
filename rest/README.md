@@ -82,7 +82,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 > | Attribute    | Type                  | Description                                    |
 > |--------------|-----------------------|------------------------------------------------|
 > | `round`      | integer               | Round at which the random value was generated. |
-> | `randomness` | Base64-encoded string | Random integer.                                |
+> | `randomness` | integer               | Random integer.                                |
 
 #### Usage
 ```bash
@@ -92,7 +92,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 -d '{"seed": "QUFBQQ=="}'
 {
   "round": 12345,
-  "randomness": "QkJCQg=="
+  "randomness": 3837753070
 }
 ```
 </details><br />
@@ -122,7 +122,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 > | Attribute    | Type                  | Description                                    |
 > |--------------|-----------------------|------------------------------------------------|
 > | `round`      | integer               | Round at which the random value was generated. |
-> | `randomness` | Base64-encoded string | Random integer.                                |
+> | `randomness` | integer               | Random integer.                                |
 
 #### Usage
 ```bash
@@ -132,7 +132,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 -d '{"seed": "QUFBQQ=="}'
 {
   "round": 12345,
-  "randomness": "QkJCQg=="
+  "randomness": 3837753070
 }
 ```
 </details><br />
@@ -161,7 +161,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 > | Attribute    | Type                  | Description                                    |
 > |--------------|-----------------------|------------------------------------------------|
 > | `round`      | integer               | Round at which the random value was generated. |
-> | `randomness` | Base64-encoded string | Random integer.                                |
+> | `randomness` | integer               | Random integer.                                |
 
 #### Usage
 ```bash
@@ -171,7 +171,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 -d '{"seed": "QUFBQQ=="}'
 {
   "round": 12345,
-  "randomness": "QkJCQg=="
+  "randomness": 3837753070
 }
 ```
 </details><br />
@@ -201,7 +201,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 > | Attribute    | Type                  | Description                                    |
 > |--------------|-----------------------|------------------------------------------------|
 > | `round`      | integer               | Round at which the random value was generated. |
-> | `randomness` | Base64-encoded string | Random integer.                                |
+> | `randomness` | integer               | Random integer.                                |
 
 #### Usage
 ```bash
@@ -211,7 +211,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 -d '{"seed": "QUFBQQ=="}'
 {
   "round": 12345,
-  "randomness": "QkJCQg=="
+  "randomness": 3837753070
 }
 ```
 </details><br />
@@ -234,8 +234,8 @@ The endpoint expects a JSON body with the following attributes:
 > | Attribute | Type                  | Required | Description                                              |
 > |-----------|-----------------------|----------|----------------------------------------------------------|
 > | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
-> | `min`     | Base64-encoded string | Yes      | Minimum of the range.                                    |
-> | `max`     | Base64-encoded string | Yes      | Maximum of the range (exclusive).                        |
+> | `min`     | integer               | Yes      | Minimum of the range.                                    |
+> | `max`     | integer               | Yes      | Maximum of the range (exclusive).                        |
 
 ##### Responses
 
@@ -243,17 +243,17 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 > | Attribute    | Type                  | Description                                    |
 > |--------------|-----------------------|------------------------------------------------|
 > | `round`      | integer               | Round at which the random value was generated. |
-> | `randomness` | Base64-encoded string | Random integer within the [min, max) interval. |
+> | `randomness` | integer               | Random integer within the [min, max) interval. |
 
 #### Usage
 ```bash
 >>> curl -X POST "http://1.2.3.4/exampleService/next/in-range" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
--d '{"seed": "QUFBQQ==", "min": "AA==", "max": "/////w=="}'
+-d '{"seed": "QUFBQQ==", "min": 0, "max": 1073741824}'
 {
   "round": 12345,
-  "randomness": "QkJCQg=="
+  "randomness": 929561826
 }
 ```
 

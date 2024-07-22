@@ -18,11 +18,11 @@ The `drand` REST API provides endpoints to retrieve verifiable random values der
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute                    | Type          | Description                               |
-> |------------------------------|---------------|-------------------------------------------|
-> | `app_name`                   | string        | Application name used during the randomness derivation. |
-> | `network`                    | object        | Information about the drand network used by the service. |
-> | `derivation_paths`           | object array  | Contains the parameters used during the randomness derivation of each function. |
+> | Attribute          | Type         | Description                                                                     |
+> |--------------------|--------------|---------------------------------------------------------------------------------|
+> | `app_name`         | string       | Application name used during the randomness derivation.                         |
+> | `network`          | object       | Information about the drand network used by the service.                        |
+> | `derivation_paths` | object array | Contains the parameters used during the randomness derivation of each function. |
 
 #### Usage
 ```bash
@@ -74,17 +74,17 @@ The endpoints in this section are *blocking*. They shall wait until a new random
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute                | Type     | Required | Description           |
-> |--------------------------|----------|----------|-----------------------|
-> | `seed`                   | Base64-encoded string   | Yes      |  Customization data used to obtain a unique random value. |
+> | Attribute | Type                  | Required | Description                                              |
+> |-----------|-----------------------|----------|----------------------------------------------------------|
+> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
 
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute                | Type                    | Description                                     |
-> |--------------------------|-------------------------|-------------------------------------------------|
-> | `round`                  | integer                 | Round at which the random value was generated.  |
-> | `randomness`             | Base64-encoded string   |  Random integer.                                |
+> | Attribute    | Type                  | Description                                    |
+> |--------------|-----------------------|------------------------------------------------|
+> | `round`      | integer               | Round at which the random value was generated. |
+> | `randomness` | Base64-encoded string | Random integer.                                |
 
 #### Usage
 ```bash
@@ -114,17 +114,17 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute                | Type     | Required | Description           |
-> |--------------------------|----------|----------|-----------------------|
-> | `seed`                   | Base64-encoded string   | Yes      |  Customization data used to obtain a unique random value. |
+> | Attribute | Type                  | Required | Description                                              |
+> |-----------|-----------------------|----------|----------------------------------------------------------|
+> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
 
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute                | Type                    | Description                                     |
-> |--------------------------|-------------------------|-------------------------------------------------|
-> | `round`                  | integer                 | Round at which the random value was generated.  |
-> | `randomness`             | Base64-encoded string   |  Random integer.                                |
+> | Attribute    | Type                  | Description                                    |
+> |--------------|-----------------------|------------------------------------------------|
+> | `round`      | integer               | Round at which the random value was generated. |
+> | `randomness` | Base64-encoded string | Random integer.                                |
 
 #### Usage
 ```bash
@@ -153,17 +153,17 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute                | Type     | Required | Description           |
-> |--------------------------|----------|----------|-----------------------|
-> | `seed`                   | Base64-encoded string   | Yes      |  Customization data used to obtain a unique random value. |
+> | Attribute | Type                  | Required | Description                                              |
+> |-----------|-----------------------|----------|----------------------------------------------------------|
+> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
 
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute                | Type                    | Description                                     |
-> |--------------------------|-------------------------|-------------------------------------------------|
-> | `round`                  | integer                 | Round at which the random value was generated.  |
-> | `randomness`             | Base64-encoded string   |  Random integer.                                |
+> | Attribute    | Type                  | Description                                    |
+> |--------------|-----------------------|------------------------------------------------|
+> | `round`      | integer               | Round at which the random value was generated. |
+> | `randomness` | Base64-encoded string | Random integer.                                |
 
 #### Usage
 ```bash
@@ -193,17 +193,17 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute                | Type     | Required | Description           |
-> |--------------------------|----------|----------|-----------------------|
-> | `seed`                   | Base64-encoded string   | Yes      |  Customization data used to obtain a unique random value. |
+> | Attribute | Type                  | Required | Description                                              |
+> |-----------|-----------------------|----------|----------------------------------------------------------|
+> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
 
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute                | Type                    | Description                                     |
-> |--------------------------|-------------------------|-------------------------------------------------|
-> | `round`                  | integer                 | Round at which the random value was generated.  |
-> | `randomness`             | Base64-encoded string   |  Random integer.                                |
+> | Attribute    | Type                  | Description                                    |
+> |--------------|-----------------------|------------------------------------------------|
+> | `round`      | integer               | Round at which the random value was generated. |
+> | `randomness` | Base64-encoded string | Random integer.                                |
 
 #### Usage
 ```bash
@@ -233,19 +233,19 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute                | Type     | Required | Description           |
-> |--------------------------|----------|----------|-----------------------|
-> | `seed`                   | Base64-encoded string   | Yes      |  Customization data used to obtain a unique random value. |
-> | `min`                    | Base64-encoded string   | Yes      |  Minimum of the range. |
-> | `max`                    | Base64-encoded string   | Yes      |  Maximum of the range (exclusive). |
+> | Attribute | Type                  | Required | Description                                              |
+> |-----------|-----------------------|----------|----------------------------------------------------------|
+> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
+> | `min`     | Base64-encoded string | Yes      | Minimum of the range.                                    |
+> | `max`     | Base64-encoded string | Yes      | Maximum of the range (exclusive).                        |
 
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute                | Type     | Description                                           |
-> |--------------------------|----------|-------------------------------------------------------|
-> | `round`                  | integer  | Round at which the random value was generated.        |
-> | `randomness`             | Base64-encoded string   |  Random integer within the [min, max) interval.                         |
+> | Attribute    | Type                  | Description                                    |
+> |--------------|-----------------------|------------------------------------------------|
+> | `round`      | integer               | Round at which the random value was generated. |
+> | `randomness` | Base64-encoded string | Random integer within the [min, max) interval. |
 
 #### Usage
 ```bash

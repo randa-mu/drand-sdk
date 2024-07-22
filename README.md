@@ -165,3 +165,69 @@ Input:
 3. msg_prime = randomness_beacon || DST_prime
 4. uniform_bytes = H(msg_prime, len_in_bytes)
 ```
+
+
+# Test Vectors
+
+## Expand Beacon - Fixed Output Hash
+
+### Keccak-256
+```text
+DST = BeaconExtenderKAT-v01-Keccak-256
+hash = Keccak-256
+
+randomness_beacon = 0000000000000000000000000000000000000000000000000000000000000000
+len_in_bytes      = 32
+uniform_bytes     = ed8597daf957b84627c40c8c0a7b37a57332e71de230cb997bc2d953a4578329
+
+randomness_beacon = 0a0b0c0d0e0f000102030405060708090a0b0c0d0e0f00010203040506070809
+len_in_bytes      = 1
+uniform_bytes     = c5
+
+randomness_beacon = 0a0a000a0a010a0a020a0a030a0a040a0a050a0a060a0a070a0a080a0a090a0b
+len_in_bytes      = 4
+uniform_bytes     = f0c2c6c6
+
+randomness_beacon = c5511916c97b90660eee5bd2e678899cd6946cdd5404d235a127067bfbd4758f
+len_in_bytes      = 32
+uniform_bytes     = 2d3382e2130624bcd615a033da8af220470bcce7faed24cc40933cdb77e96f8b
+
+randomness_beacon = 8876517e60e0a79c4c3ef2877df1f19a6a76aff3550c19a9e9e088a41f813b14
+len_in_bytes      = 64
+uniform_bytes     = 23d8f39354e31ba07e8f6eb9820ef8fab7ed11dc0fae2568f5d661f86127dad9a66afa00d76e5dca633d3149ce5eed9d9f5a21dc26e1c79ee9a71c14b75ad175
+
+randomness_beacon = b2308b0969926631e0d74053ff20b8d167eed55b21803f4d85475b838aee8a54
+len_in_bytes      = 68
+uniform_bytes     = 0c09746a3bde39a0992138f3715601cbda6a54b516c50982da0e8fb5e915bc3b3d7d610b08f20503bc18fdc2495ca1bc6d104a8b1d85c8089d1c88c763710060a9577624
+```
+
+## Expand Beacon - Extensible Hash
+### Shake128
+```text
+DST = BeaconExtenderKAT-v01-with-xof-SHAKE128
+hash = SHAKE128
+
+randomness_beacon = 0000000000000000000000000000000000000000000000000000000000000000
+len_in_bytes      = 32
+uniform_bytes     = acef075354a00f78d4be23267c6a1febf1e65b8813c167813f0385d4229fea7b
+
+randomness_beacon = 0a0b0c0d0e0f000102030405060708090a0b0c0d0e0f00010203040506070809
+len_in_bytes      = 1
+uniform_bytes     = 84
+
+randomness_beacon = 0a0a000a0a010a0a020a0a030a0a040a0a050a0a060a0a070a0a080a0a090a0b
+len_in_bytes      = 4
+uniform_bytes     = dcf9bb78
+
+randomness_beacon = c551191 A;6c97b90660eee5bd2e678899cd6946cdd5404d235a127067bfbd4758f
+len_in_bytes      = 32
+uniform_bytes     = 06ce9bcd92153bd92bf5279490ff2d1c299e61554b470fc29afe1d8def434472
+
+randomness_beacon = 8876517e60e0a79c4c3ef2877df1f19a6a76aff3550c19a9e9e088a41f813b14
+len_in_bytes      = 64
+uniform_bytes     = 340323b84c617b0f9da3ca314f0a81d980de69a8767603cf9fa9c61338e91d99fcf76e7001b67d85560e3442deea90722855cb706c321c3599b3df8d0b6ed515
+
+randomness_beacon = b2308b0969926631e0d74053ff20b8d167eed55b21803f4d85475b838aee8a54
+len_in_bytes      = 68
+uniform_bytes     = 7f03175a5e7be6024b6373c1180d569b3df507388770c71de8e3db01b9f0904edf249a8b2c94810142893f2326c6632138ed069e9eaf68fb7014c8e8a1182cd128099f16
+```

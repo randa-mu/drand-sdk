@@ -30,15 +30,13 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 {
   "app_name": "exampleService",
   "network": {
-    "public_key": "83cf0f2896adee7eb8b5f01fcad3912212c437e0073e911fb90022d3e760183c8c4b450b6a0a6c3ac6a5776a2d1064510d1fec758c921cc22b0e17e63aaf4bcb5ed66304de9cf809bd274ca73bab4af5a6e9c76a4bc09e76eae8991ef5ece45a",
-    "period": 3,
-    "genesis_time": 1692803367,
-    "hash": "52db9ba70e0cc0f6eaf7803dd07447a1f5477735fd3f661792ba94600c84e971",
-    "groupHash": "f477d5c89f21a17c863a7f937c6a6d15859414d2be09cd448d4279af331c5d3e",
-    "schemeID": "bls-unchained-g1-rfc9380",
-    "metadata": {
-      "beaconID": "quicknet"
-    }
+      "public_key": "8d4dc143b2128e18b4cdace6e5abece8012bfeca48551a008a69a1bbc88b71d37da840d2c8b028170f0a8704c90c1617",
+      "period": 30,
+      "genesis_time": 1698856390,
+      "genesis_seed": "36ab1415e2967a7571f70f88cbf733eb77ef1a3ed34173ecc5e7bac924aeb17f",
+      "chain_hash": "f11df9e56edb49c6b049cd73a68214be4e879688fdd696f96f0750ad377f9be4",
+      "scheme": "pedersen-bls-chained",
+      "beacon_id": "default"
   },
   "derivation_paths": [
     {

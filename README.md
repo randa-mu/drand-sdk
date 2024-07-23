@@ -213,6 +213,8 @@ Notice that if the `<OptionalUserCustomizationString>` parameter remains constan
 **Common between both options**  
 To pick an element, we use the aforementioned DST to generate a number within the $[0, n)$ range where $n$ is the length of the array. This follows the algorithm used to generate an integer within a range.
 
+### Pick Multiple Elements
+TODO: Decide on the exact specification.
 
 # Test Vectors
 

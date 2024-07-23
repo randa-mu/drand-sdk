@@ -123,7 +123,6 @@ def print_kats(language):
         print(f'hash = {hash_fn["hash_name"].decode()}')
         print()
 
-        # if language == "rust"
         for inp in kat_inputs:
             expand_fn, hasher = hash_fn["expand_fn"], hash_fn["hasher"]
             beacon, DST, len_in_bytes = (

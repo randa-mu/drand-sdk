@@ -189,6 +189,14 @@ The generation of a random integer is done by querying the next $\lceil \log_2(n
 
 For functions like `NextInt31`, we use a similar approach, but we additionally clear the most significant bit to output a positive number.
 
+### Integers within Range
+We use the following DST to generate integers within a positive range (0 <= min < max): `<app_name>-v<SDK_VERSION>-NextRange-<min>-<max>-<OptionalUserCustomizationString>`. The parameters `<min>` and `<max>` specify the lower and upper bound, respectively.
+
+Generating a random number within the range works as follows:
+1. Set $n = \text{max} - \text{min}$. 
+1. Generate a random integer within the $r \in [0, n)$ using the technique described for integers and the above DST.
+1. Return $r + \text{min} \in [\text{min}, \text{max})$
+
 # Test Vectors
 
 ## Extend Beacon - Fixed Output Hash

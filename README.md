@@ -216,6 +216,9 @@ To pick an element, we use the aforementioned DST to generate a number within th
 ### Pick Multiple Elements
 TODO: Decide on the exact specification.
 
+### Shuffle Array
+TODO: Decide on the exact specification.
+
 # Test Vectors
 
 ## Extend Beacon - Fixed Output Hash

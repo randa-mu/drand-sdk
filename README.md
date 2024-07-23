@@ -197,6 +197,23 @@ Generating a random number within the range works as follows:
 1. Generate a random integer within the $r \in [0, n)$ using the technique described for integers and the above DST.
 1. Return $r + \text{min} \in [\text{min}, \text{max})$
 
+### Pick One Element
+TODO: Decide on the exact specification:
+
+**Option 1:**  
+We use the following DST to pick a single element from the array: `<app_name>-v<SDK_VERSION>-Pick-<ArrayHash>-<OptionalUserCustomizationString>`.   
+Where `<ArrayHash>` is the 32-bytes output of `TupleHash(array)` (see [NIST SP 800-185](https://www.nist.gov/publications/sha-3-derived-functions-cshake-kmac-tuplehash-and-parallelhash)). By hashing the array, one can pick elements in multiple arrays for a single randomness beacon. Unless the `<OptionalUserCustomizationString>` is set, calling the function on the same array twice will always result in the same element being picked.
+
+**Option 2:**  
+We use the following DST to pick a single element from the array: `<app_name>-v<SDK_VERSION>-Pick-<OptionalUserCustomizationString>`. 
+
+Notice that if the `<OptionalUserCustomizationString>` parameter remains constant / is not used, this function can only be called on a single array per randomness beacon.
+
+
+**Common between both options**  
+To pick an element, we use the aforementioned DST to generate a number within the $[0, n)$ range where $n$ is the length of the array. This follows the algorithm used to generate an integer within a range.
+
+
 # Test Vectors
 
 ## Extend Beacon - Fixed Output Hash

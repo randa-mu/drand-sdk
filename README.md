@@ -169,7 +169,7 @@ Input:
 
 # Test Vectors
 
-## Expand Beacon - Fixed Output Hash
+## Extend Beacon - Fixed Output Hash
 
 ### Keccak-256
 ```text
@@ -201,7 +201,7 @@ len_in_bytes      = 68
 uniform_bytes     = 0c09746a3bde39a0992138f3715601cbda6a54b516c50982da0e8fb5e915bc3b3d7d610b08f20503bc18fdc2495ca1bc6d104a8b1d85c8089d1c88c763710060a9577624
 ```
 
-## Expand Beacon - Extensible Hash
+## Extend Beacon - Extensible Hash
 ### Shake128
 ```text
 DST = BeaconExtenderKAT-v01-XofSHAKE128

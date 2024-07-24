@@ -216,7 +216,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 >>> curl -X POST "http://1.2.3.4/exampleService/next/bytes" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
--d '{"seed": "QUFBQQ==", "length": 64
+-d '{"seed": "QUFBQQ==", "length": 64}'
 {
   "round": 12345,
   "randomness": "S2BtHuIgNRphZVuGTl/4tEvZ5i+ErBuu33bpJcDOxP83Z8lTunQ9XFRfTmesXolGU8QOLhY9/Ls/5AqC3LIIHQ=="

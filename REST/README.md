@@ -186,13 +186,14 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 <details>
  <summary>
- <code>POST</code> <code><b>/{service}/next/bytes</b></code><br />
- Returns <code>length</code> bytes derived from the next randomness beacon.
+ <code>POST</code> <code><b>/{service}/next/bytes/{length}</b></code><br />
+ Returns <code>{length}</code> bytes derived from the next randomness beacon.
  </summary>
 
 ##### Parameters
 
 - `service` (path parameter, required): Name of the service.
+- `length` (path parameter, required): Number of bytes requested.
 
 ##### Request Body
 
@@ -201,7 +202,6 @@ The endpoint expects a JSON body with the following attributes:
 > | Attribute | Type                  | Required | Description                                              |
 > |-----------|-----------------------|----------|----------------------------------------------------------|
 > | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
-> | `length`  | integer               | Yes      | Number of bytes requested, up to 1MB.                    |
 
 ##### Responses
 
@@ -213,10 +213,10 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 #### Usage
 ```bash
->>> curl -X POST "http://1.2.3.4/exampleService/next/bytes" \
+>>> curl -X POST "http://1.2.3.4/exampleService/next/bytes/64" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
--d '{"seed": "QUFBQQ==", "length": 64}'
+-d '{"seed": "QUFBQQ=="}'
 {
   "round": 12345,
   "randomness": "S2BtHuIgNRphZVuGTl/4tEvZ5i+ErBuu33bpJcDOxP83Z8lTunQ9XFRfTmesXolGU8QOLhY9/Ls/5AqC3LIIHQ=="

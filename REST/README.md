@@ -75,11 +75,11 @@ These endpoints can output multiple values for one randomness beacon by specifyi
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute    | Type                  | Required | Description                                                                     |
-> |--------------|-----------------------|----------|---------------------------------------------------------------------------------|
-> | `seed`       | Base64-encoded string | Yes      | Customization data used to obtain a unique random value.                        |
-> | `n`          | integer               | No       | Number of values that should be output.                                         |
-> | `signedness` | string                | No       | Either "unsigned" for an unsigned integer, or "signed" for a signed integer.    |
+> | Attribute    | Type                  | Required | Default           | Description                                                                     |
+> |--------------|-----------------------|----------|-------------------|---------------------------------------------------------------------------------|
+> | `seed`       | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value.                        |
+> | `n`          | integer               | No       | 1                 | Number of values that should be output.                                         |
+> | `signedness` | string                | No       | "signed"          | Either "unsigned" for an unsigned integer, or "signed" for a signed integer.    |
 
 ##### Responses
 
@@ -102,7 +102,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 ```
 </details><br />
 
-<details>
+<details> 
  <summary>
  <code>POST</code> <code><b>/{service}/next/in-range</b></code><br />
  Returns uint256 integers within a [min, max) range derived from the next randomness beacon.
@@ -116,12 +116,12 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute | Type                  | Required | Description                                              |
-> |-----------|-----------------------|----------|----------------------------------------------------------|
-> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
-> | `min`     | integer               | Yes      | Minimum of the range.                                    |
-> | `max`     | integer               | Yes      | Maximum of the range (exclusive).                        |
-> | `n`       | integer               | No       | Number of values that should be output.                  |
+> | Attribute | Type                  | Required | Default           | Description                                              |
+> |-----------|-----------------------|----------|------------------------------------------------------------------------------|
+> | `seed`    | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value. |
+> | `max`     | integer               | Yes      | n/a               | Maximum of the range (exclusive).                        |
+> | `min`     | integer               | No       | 0                 | Minimum of the range.                                    |
+> | `n`       | integer               | No       | 1                 | Number of values that should be output.                  |
 
 ##### Responses
 
@@ -159,9 +159,9 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute | Type                  | Required | Description                                              |
-> |-----------|-----------------------|----------|----------------------------------------------------------|
-> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
+> | Attribute | Type                  | Required | Default           | Description                                              |
+> |-----------|-----------------------|----------|-------------------|----------------------------------------------------------|
+> | `seed`    | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value. |
 
 ##### Responses
 
@@ -169,7 +169,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 > | Attribute    | Type                  | Description                                    |
 > |--------------|-----------------------|------------------------------------------------|
 > | `round`      | integer               | Round at which the random bytes were generated.|
-> | `randomness` | Base64-encoded bytes | Random bytes.                                  |
+> | `randomness` | Base64-encoded bytes  | Random bytes.                                  |
 
 #### Usage
 ```bash

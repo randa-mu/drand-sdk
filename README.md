@@ -201,7 +201,7 @@ Generating a random number within the range works as follows:
 TODO: Decide on the exact specification:
 
 **Option 1:**  
-We use the following DST to pick a single element from the array: `<app_name>-v<SDK_VERSION>-Pick-<ArrayHash>-<OptionalUserCustomizationString>`.   
+We use the following DST to pick a single element from the array: `<app_name>-v<SDK_VERSION>-Pick-TH-<ArrayHash>-<OptionalUserCustomizationString>`.   
 Where `<ArrayHash>` is the 32-bytes output of `TupleHash(array)` (see [NIST SP 800-185](https://www.nist.gov/publications/sha-3-derived-functions-cshake-kmac-tuplehash-and-parallelhash)). By hashing the array, one can pick elements in multiple arrays for a single randomness beacon. Unless the `<OptionalUserCustomizationString>` is set, calling the function on the same array twice will always result in the same element being picked.
 
 **Option 2:**  

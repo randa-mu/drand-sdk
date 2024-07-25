@@ -79,7 +79,7 @@ The endpoint expects a JSON body with the following attributes:
 > |--------------|-----------------------|----------|-------------------|---------------------------------------------------------------------------------|
 > | `seed`       | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value.                        |
 > | `n`          | unsigned integer      | No       | 1                 | Number of values that should be output, at most 4096.                           |
-> | `signedness` | string                | No       | "signed"          | Either "unsigned" for an unsigned integer, or "signed" for a signed integer.    |
+> | `type`       | string                | No       | "int"             | Either "int" for a (signed) integer, or "uint" for an unsigned integer.         |
 
 ##### Responses
 

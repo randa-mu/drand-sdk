@@ -169,7 +169,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 > | Attribute    | Type                  | Description                                    |
 > |--------------|-----------------------|------------------------------------------------|
 > | `round`      | integer               | Round at which the random bytes were generated.|
-> | `randomness` | base-64 encoded bytes | Random bytes.                                  |
+> | `randomness` | Base64-encoded bytes | Random bytes.                                  |
 
 #### Usage
 ```bash

@@ -8,7 +8,7 @@ The `drand` REST API provides endpoints to retrieve verifiable random values der
 <details>
  <summary>
  <code>GET</code> <code><b>/{service}</b></code> <br />
- Output the parameters required for verification.
+ Output the service-specific parameters required for verification such as the drand network parameters and the derivation paths.
  </summary>
 
 ##### Parameters

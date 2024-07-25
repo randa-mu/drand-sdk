@@ -69,7 +69,7 @@ These endpoints can output multiple values for one randomness beacon by specifyi
 ##### Parameters
 
 - `service` (path parameter, required): Name of the service.
-- `bitsize` (path parameter, required): The size in bits of the random integers, must be one of the following: `8`, `16`, `32`, `64`, `128`, `256`
+- `bitsize` (path parameter, required): The size in bits of the random integers, must be one of the following: `8`, `16`, `24`, `32`, `40`, `48`, `56`, `64`, `72`, `80`, `88`, `96`, `104`, `112`, `120`, `128`, `136`, `144`, `152`, `160`, `168`, `176`, `184`, `192`, `200`, `208`, `216`, `224`, `232`, `240`, `248`, `256`.
 
 ##### Request Body
 

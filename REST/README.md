@@ -62,7 +62,7 @@ These endpoints can output multiple values for one randomness beacon by specifyi
 
 <details>
  <summary>
- <code>POST</code> <code><b>/{service}/next/int/{bitsize}</b></code><br />
+ <code>POST</code> <code><b>/{service}/random/int/{bitsize}</b></code><br />
  Returns integers of <code>{bitsize}</code> bits derived from the next randomness beacon.
  </summary>
 
@@ -91,7 +91,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 #### Usage
 ```bash
->>> curl -X POST "http://1.2.3.4/exampleService/next/unsigned/32" \
+>>> curl -X POST "http://1.2.3.4/exampleService/random/unsigned/32" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
 -d '{"seed": "QUFBQQ==", "n": 2}'
@@ -104,7 +104,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 <details> 
  <summary>
- <code>POST</code> <code><b>/{service}/next/in-range</b></code><br />
+ <code>POST</code> <code><b>/{service}/random/in-range</b></code><br />
  Returns uint256 integers within a [min, max) range derived from the next randomness beacon.
  </summary>
 
@@ -133,7 +133,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 #### Usage
 ```bash
->>> curl -X POST "http://1.2.3.4/exampleService/next/in-range" \
+>>> curl -X POST "http://1.2.3.4/exampleService/random/in-range" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
 -d '{"seed": "QUFBQQ==", "min": 0, "max": 1073741824}'
@@ -146,7 +146,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 <details>
  <summary>
- <code>POST</code> <code><b>/{service}/next/bytes/{length}</b></code><br />
+ <code>POST</code> <code><b>/{service}/random/bytes/{length}</b></code><br />
  Returns <code>{length}</code> bytes derived from the next randomness beacon.
  </summary>
 
@@ -173,7 +173,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 #### Usage
 ```bash
->>> curl -X POST "http://1.2.3.4/exampleService/next/bytes/64" \
+>>> curl -X POST "http://1.2.3.4/exampleService/random/bytes/64" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
 -d '{"seed": "QUFBQQ=="}'

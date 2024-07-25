@@ -78,7 +78,7 @@ The endpoint expects a JSON body with the following attributes:
 > | Attribute    | Type                  | Required | Default           | Description                                                                     |
 > |--------------|-----------------------|----------|-------------------|---------------------------------------------------------------------------------|
 > | `seed`       | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value.                        |
-> | `n`          | integer               | No       | 1                 | Number of values that should be output, at most 4096.                           |
+> | `n`          | unsigned integer      | No       | 1                 | Number of values that should be output, at most 4096.                           |
 > | `signedness` | string                | No       | "signed"          | Either "unsigned" for an unsigned integer, or "signed" for a signed integer.    |
 
 ##### Responses
@@ -86,7 +86,7 @@ The endpoint expects a JSON body with the following attributes:
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
 > | Attribute    | Type                                 | Description                                    |
 > |--------------|--------------------------------------|------------------------------------------------|
-> | `round`      | integer                              | Round at which the random value was generated. |
+> | `round`      | unsigned integer                     | Round at which the random value was generated. |
 > | `randomness` | array of string-encoded integers     | Requested integers as an array of strings.     |
 
 #### Usage
@@ -119,16 +119,16 @@ The endpoint expects a JSON body with the following attributes:
 > | Attribute | Type                  | Required | Default           | Description                                              |
 > |-----------|-----------------------|----------|------------------------------------------------------------------------------|
 > | `seed`    | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value. |
-> | `max`     | integer               | Yes      | n/a               | Maximum of the range (exclusive).                        |
-> | `min`     | integer               | No       | 0                 | Minimum of the range.                                    |
-> | `n`       | integer               | No       | 1                 | Number of values that should be output, at most 4096.    |
+> | `max`     | unsigned integer      | Yes      | n/a               | Maximum of the range (exclusive).                        |
+> | `min`     | unsigned integer      | No       | 0                 | Minimum of the range.                                    |
+> | `n`       | unsigned integer      | No       | 1                 | Number of values that should be output, at most 4096.    |
 
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
 > | Attribute    | Type                                 | Description                                                                   |
 > |--------------|--------------------------------------|-------------------------------------------------------------------------------|
-> | `round`      | integer                              | Round at which the random value was generated.                                |
+> | `round`      | unsigned integer                     | Round at which the random value was generated.                                |
 > | `randomness` | array of string-encoded integers     | Requested integers within the [min, max) interval as an array of strings.     |
 
 #### Usage
@@ -168,7 +168,7 @@ The endpoint expects a JSON body with the following attributes:
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
 > | Attribute    | Type                  | Description                                    |
 > |--------------|-----------------------|------------------------------------------------|
-> | `round`      | integer               | Round at which the random bytes were generated.|
+> | `round`      | unsigned integer      | Round at which the random bytes were generated.|
 > | `randomness` | Base64-encoded bytes  | Random bytes.                                  |
 
 #### Usage

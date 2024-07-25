@@ -78,7 +78,7 @@ The endpoint expects a JSON body with the following attributes:
 > | Attribute    | Type                  | Required | Default           | Description                                                                     |
 > |--------------|-----------------------|----------|-------------------|---------------------------------------------------------------------------------|
 > | `seed`       | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value.                        |
-> | `n`          | integer               | No       | 1                 | Number of values that should be output.                                         |
+> | `n`          | integer               | No       | 1                 | Number of values that should be output, at most 4096.                           |
 > | `signedness` | string                | No       | "signed"          | Either "unsigned" for an unsigned integer, or "signed" for a signed integer.    |
 
 ##### Responses
@@ -121,7 +121,7 @@ The endpoint expects a JSON body with the following attributes:
 > | `seed`    | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value. |
 > | `max`     | integer               | Yes      | n/a               | Maximum of the range (exclusive).                        |
 > | `min`     | integer               | No       | 0                 | Minimum of the range.                                    |
-> | `n`       | integer               | No       | 1                 | Number of values that should be output.                  |
+> | `n`       | integer               | No       | 1                 | Number of values that should be output, at most 4096.    |
 
 ##### Responses
 

@@ -84,10 +84,10 @@ The endpoint expects a JSON body with the following attributes:
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute    | Type                  | Description                                    |
-> |--------------|-----------------------|------------------------------------------------|
-> | `round`      | integer               | Round at which the random value was generated. |
-> | `randomness` | array of integers     | Random integer.                                |
+> | Attribute    | Type                                 | Description                                    |
+> |--------------|--------------------------------------|------------------------------------------------|
+> | `round`      | integer                              | Round at which the random value was generated. |
+> | `randomness` | array of string-encoded integers     | Requested integers as an array of strings.     |
 
 #### Usage
 ```bash
@@ -97,7 +97,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 -d '{"seed": "QUFBQQ==", "n": 2}'
 {
   "round": 12345,
-  "randomness": [-2271373, 1100599]
+  "randomness": ["-2271373", "1100599"]
 }
 ```
 </details><br />
@@ -126,10 +126,10 @@ The endpoint expects a JSON body with the following attributes:
 ##### Responses
 
 If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute    | Type                  | Description                                    |
-> |--------------|-----------------------|------------------------------------------------|
-> | `round`      | integer               | Round at which the random value was generated. |
-> | `randomness` | integer               | Random integer within the [min, max) interval. |
+> | Attribute    | Type                                 | Description                                                                   |
+> |--------------|--------------------------------------|-------------------------------------------------------------------------------|
+> | `round`      | integer                              | Round at which the random value was generated.                                |
+> | `randomness` | array of string-encoded integers     | Requested integers within the [min, max) interval as an array of strings.     |
 
 #### Usage
 ```bash
@@ -139,7 +139,7 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 -d '{"seed": "QUFBQQ==", "min": 0, "max": 1073741824}'
 {
   "round": 12345,
-  "randomness": [929561826]
+  "randomness": ["929561826"]
 }
 ```
 </details><br />

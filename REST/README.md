@@ -62,8 +62,8 @@ These endpoints can output multiple values for one randomness beacon by specifyi
 
 <details>
  <summary>
- <code>POST</code> <code><b>/{service}/next/unsigned/{bitsize}</b></code><br />
- Returns unsigned integers of <code>{bitsize}</code> bits derived from the next randomness beacon.
+ <code>POST</code> <code><b>/{service}/next/int/{bitsize}</b></code><br />
+ Returns integers of <code>{bitsize}</code> bits derived from the next randomness beacon.
  </summary>
 
 ##### Parameters
@@ -75,10 +75,11 @@ These endpoints can output multiple values for one randomness beacon by specifyi
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute | Type                  | Required | Description                                              |
-> |-----------|-----------------------|----------|----------------------------------------------------------|
-> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
-> | `n`       | integer               | No       | Number of values that should be output.                  |
+> | Attribute    | Type                  | Required | Description                                                                     |
+> |--------------|-----------------------|----------|---------------------------------------------------------------------------------|
+> | `seed`       | Base64-encoded string | Yes      | Customization data used to obtain a unique random value.                        |
+> | `n`          | integer               | No       | Number of values that should be output.                                         |
+> | `signedness` | string                | No       | Either "unsigned" for an unsigned integer, or "signed" for a signed integer.    |
 
 ##### Responses
 
@@ -91,47 +92,6 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 #### Usage
 ```bash
 >>> curl -X POST "http://1.2.3.4/exampleService/next/unsigned/32" \
--H "Authorization: Bearer <your_jwt_token>" \
--H "Content-Type: application/json" \
--d '{"seed": "QUFBQQ=="}'
-{
-  "round": 12345,
-  "randomness": [2697587858]
-}
-```
-</details><br />
-
-<details>
- <summary>
- <code>POST</code> <code><b>/{service}/next/signed/{bitsize}</b></code><br />
- Returns signed integers of <code>{bitsize}</code> bits derived from the next randomness beacon.
- </summary>
-
-##### Parameters
-
-- `service` (path parameter, required): Name of the service.
-- `bitsize` (path parameter, required): The size in bits of the random integer, must be one of the following: `8`, `16`, `32`, `64`, `128`, `256`
-
-##### Request Body
-
-The endpoint expects a JSON body with the following attributes:
-
-> | Attribute | Type                  | Required | Description                                              |
-> |-----------|-----------------------|----------|----------------------------------------------------------|
-> | `seed`    | Base64-encoded string | Yes      | Customization data used to obtain a unique random value. |
-> | `n`       | integer               | No       | Number of values that should be output.                  |
-
-##### Responses
-
-If successful, returns a `200 OK` status and a JSON object with the following attributes:
-> | Attribute    | Type                  | Description                                    |
-> |--------------|-----------------------|------------------------------------------------|
-> | `round`      | integer               | Round at which the random value was generated. |
-> | `randomness` | signed integer        | Random integer.                                |
-
-#### Usage
-```bash
->>> curl -X POST "http://1.2.3.4/exampleService/next/signed/32" \
 -H "Authorization: Bearer <your_jwt_token>" \
 -H "Content-Type: application/json" \
 -d '{"seed": "QUFBQQ==", "n": 2}'

@@ -116,12 +116,12 @@ If successful, returns a `200 OK` status and a JSON object with the following at
 
 The endpoint expects a JSON body with the following attributes:
 
-> | Attribute | Type                  | Required | Default           | Description                                              |
-> |-----------|-----------------------|----------|------------------------------------------------------------------------------|
-> | `seed`    | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value. |
-> | `max`     | unsigned integer      | Yes      | n/a               | Maximum of the range (exclusive).                        |
-> | `min`     | unsigned integer      | No       | 0                 | Minimum of the range.                                    |
-> | `n`       | unsigned integer      | No       | 1                 | Number of values that should be output, at most 4096.    |
+> | Attribute | Type                  | Required | Default           | Description                                                       |
+> |-----------|-----------------------|----------|---------------------------------------------------------------------------------------|
+> | `seed`    | Base64-encoded string | Yes      | n/a               | Customization data used to obtain a unique random value.          |
+> | `max`     | unsigned integer      | Yes      | n/a               | Maximum of the range (exclusive), must be greater than min.       |
+> | `min`     | unsigned integer      | No       | 0                 | Minimum of the range, defaults to 0, must be >= 0.                |
+> | `n`       | unsigned integer      | No       | 1                 | Number of values that should be output, at most 4096.             |
 
 ##### Responses
 

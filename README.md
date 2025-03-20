@@ -125,6 +125,11 @@ We build the DST as follows: `<AppName>-v<SdkVersion>-<FnName>` where
  - `<SdkVersion>` is the current version of the SDK.
  - `<FnName>` is the name of the SDK function being used.
 
+Optionally, we allow appending customization strings at the end of the DST as follows:  
+`<AppName>-v<SdkVersion>-<FnName>-<OptionalFnCustomizationString>-<OptionalUserCustomizationString>`  
+The `<OptionalFnCustomizationString>` is a parameter used by derivation functions to separate their outputs. For instance, the `NextRange` function specifies the bounds within that string.  
+The `<OptionalUserCustomizationString>` customization string is a parameter that can be specified by applications to customize the output on a per-user basis. To ensure the integrity of random values, the customization string must be agreed upon by both the party generating the randomness and the verifier.
+
 Each SDK function works by generating a random byte string based on the `expand_message_xmd` and `expand_message_xof` functions described in [rfc9380](https://datatracker.ietf.org/doc/html/rfc9380#name-expand_message_xmd). 
 
 For non-extensible hash function such as `SHA-3`, `Keccak-256`, we use the following algorithm based on `expand_message_xmd`:
@@ -166,6 +171,53 @@ Input:
 4. uniform_bytes = H(msg_prime, len_in_bytes)
 ```
 
+## Derivation Paths
+This section describes the various algorithms used to generate random values from a randomness beacon.
+
+### Fixed-size Integers
+For the derivation of integers, we rely on a beacon extender configured with the following DSTs: `<app_name>-v<SDK_VERSION>-<IntFunction>-<OptionalUserCustomizationString>` where `IntFunction` is one of the following:
+- `NextUint32`
+- `NextUint64`
+- `NextUint128`
+- `NextUint256`
+- `NextInt31`
+- `NextInt63`
+- `NextInt127`
+- `NextInt255`
+
+The generation of a random integer is achieved by querying the next $\lceil \log_2(n) \rceil + 128$ bits from the beacon extender. We define $n$ as the maximum integer value (e.g., $n = 2^{32}$ for `NextUint32`). First, the output of the beacon extender is interpreted as a large big endian integer $\rho$. Then, the random integer $r = \rho \bmod n$ is generated. 
+
+For functions like `NextInt31`, we use a similar approach, but we additionally clear the most significant bit to output a positive number.
+
+### Integers within Range
+We use the following DST to generate integers within a positive range (0 <= min < max): `<app_name>-v<SDK_VERSION>-NextRange-<min>-<max>-<OptionalUserCustomizationString>`. The parameters `<min>` and `<max>` specify the lower and upper bound, respectively.
+
+Generating a random number within the range works as follows:
+1. Set $n = \text{max} - \text{min}$. 
+1. Generate a random integer within the $r \in [0, n)$ using the technique described for integers and the above DST.
+1. Return $r + \text{min} \in [\text{min}, \text{max})$
+
+### Pick One Element
+TODO: Decide on the exact specification:
+
+**Option 1:**  
+We use the following DST to pick a single element from the array: `<app_name>-v<SDK_VERSION>-Pick-TH-<ArrayHash>-<OptionalUserCustomizationString>`.   
+Where `<ArrayHash>` is the 32-bytes output of `TupleHash(array)` (see [NIST SP 800-185](https://www.nist.gov/publications/sha-3-derived-functions-cshake-kmac-tuplehash-and-parallelhash)). By hashing the array, one can pick elements in multiple arrays for a single randomness beacon. Unless the `<OptionalUserCustomizationString>` is set, calling the function on the same array twice will always result in the same element being picked.
+
+**Option 2:**  
+We use the following DST to pick a single element from the array: `<app_name>-v<SDK_VERSION>-Pick-<OptionalUserCustomizationString>`. 
+
+Notice that if the `<OptionalUserCustomizationString>` parameter remains constant / is not used, this function can only be called on a single array per randomness beacon.
+
+
+**Common between both options**  
+To pick an element, we use the aforementioned DST to generate a number within the $[0, n)$ range where $n$ is the length of the array. This follows the algorithm used to generate an integer within a range.
+
+### Pick Multiple Elements
+TODO: Decide on the exact specification.
+
+### Shuffle Array
+TODO: Decide on the exact specification.
 
 # Test Vectors
 

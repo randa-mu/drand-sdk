@@ -1,16 +1,17 @@
-# SDK for drand usage
+# How to derive good random values
 
-This repo documents the APIs available to use verifiable randomness from the drand network effectively in your projects.
+This repo documents the APIs we recommend to use along with the verifiable randomness from the drand/dcipher network effectively in your projects.
 
 Goals for this repo are to:
  - Provide clear derivation paths and algorithm for random values of different types.
  - Provide the necessary "verification algorithms" for said derivation paths.
  - Provide a clear set of APIs that allow users to use verifiable randomness in their code without having to care about it.
+ - Provide KAT to test your own implementations.
 
 
-# Developer needs satisfied by our APIs
+# Developer needs
 
-The following usecases are the ones we have designed the drand VRF SDK for.
+The following usecases are the ones we have designed this for.
 If you have a specific usecase for randomness that you feel is missing here, please reach out to us.
 
 ## Pick a random integer using drand VRF
@@ -111,26 +112,26 @@ Sha256() []byte
 ```
 
 # Technical background
-We design the SDK based on three key requirements: 
+We design the derivation paths based on three key requirements: 
  1. Ability to generate more random bits than the randomness beacon
- 1. Each SDK function must have an independent output
+ 1. Each function must have an independent output
  1. Developers should have the ability to derive application specific values from the randomness beacon
 
 We solve (1) by relying on a variable-length keyed hash function. By providing the randomness beacon as a key/seed to a hash function, we can deterministically derive more bits. This allows us to provide functions that output far more than 256 random bits.
 
 To solve (2) and (3), we opt for a Domain Separation Tag (DST). A DST is a *static public* value, known to both the generator and the verifier. By including it in addition to the seed and with a different value in each derivation function, this guarantees (2). Solving (3) requires the developer to specify his own value; we name this parameter AppName.
 
-We build the DST as follows: `<AppName>-v<SdkVersion>-<FnName>` where 
+We build the DST as follows: `<AppName>-v<Version>-<FnName>` where 
  - `<AppName>` is the application name provided by the developer. Defaults to `drand`.
- - `<SdkVersion>` is the current version of the SDK.
- - `<FnName>` is the name of the SDK function being used.
+ - `<Version>` is the current version of the spec.
+ - `<FnName>` is the name of the function being used.
 
 Optionally, we allow appending customization strings at the end of the DST as follows:  
-`<AppName>-v<SdkVersion>-<FnName>-<OptionalFnCustomizationString>-<OptionalUserCustomizationString>`  
+`<AppName>-v<Version>-<FnName>-<OptionalFnCustomizationString>-<OptionalUserCustomizationString>`  
 The `<OptionalFnCustomizationString>` is a parameter used by derivation functions to separate their outputs. For instance, the `NextRange` function specifies the bounds within that string.  
 The `<OptionalUserCustomizationString>` customization string is a parameter that can be specified by applications to customize the output on a per-user basis. To ensure the integrity of random values, the customization string must be agreed upon by both the party generating the randomness and the verifier.
 
-Each SDK function works by generating a random byte string based on the `expand_message_xmd` and `expand_message_xof` functions described in [rfc9380](https://datatracker.ietf.org/doc/html/rfc9380#name-expand_message_xmd). 
+Each  function works by generating a random byte string based on the `expand_message_xmd` and `expand_message_xof` functions described in [rfc9380](https://datatracker.ietf.org/doc/html/rfc9380#name-expand_message_xmd). 
 
 For non-extensible hash function such as `SHA-3`, `Keccak-256`, we use the following algorithm based on `expand_message_xmd`:
 ```
@@ -175,7 +176,7 @@ Input:
 This section describes the various algorithms used to generate random values from a randomness beacon.
 
 ### Fixed-size Integers
-For the derivation of integers, we rely on a beacon extender configured with the following DSTs: `<app_name>-v<SDK_VERSION>-<IntFunction>-<OptionalUserCustomizationString>` where `IntFunction` is one of the following:
+For the derivation of integers, we rely on a beacon extender configured with the following DSTs: `<app_name>-v<VERSION>-<IntFunction>-<OptionalUserCustomizationString>` where `IntFunction` is one of the following:
 - `NextUint32`
 - `NextUint64`
 - `NextUint128`
@@ -190,7 +191,7 @@ The generation of a random integer is achieved by querying the next $\lceil \log
 For functions like `NextInt31`, we use a similar approach, but we additionally clear the most significant bit to output a positive number.
 
 ### Integers within Range
-We use the following DST to generate integers within a positive range (0 <= min < max): `<app_name>-v<SDK_VERSION>-NextRange-<min>-<max>-<OptionalUserCustomizationString>`. The parameters `<min>` and `<max>` specify the lower and upper bound, respectively.
+We use the following DST to generate integers within a positive range (0 <= min < max): `<app_name>-v<VERSION>-NextRange-<min>-<max>-<OptionalUserCustomizationString>`. The parameters `<min>` and `<max>` specify the lower and upper bound, respectively.
 
 Generating a random number within the range works as follows:
 1. Set $n = \text{max} - \text{min}$. 
@@ -201,11 +202,11 @@ Generating a random number within the range works as follows:
 TODO: Decide on the exact specification:
 
 **Option 1:**  
-We use the following DST to pick a single element from the array: `<app_name>-v<SDK_VERSION>-Pick-TH-<ArrayHash>-<OptionalUserCustomizationString>`.   
+We use the following DST to pick a single element from the array: `<app_name>-v<VERSION>-Pick-TH-<ArrayHash>-<OptionalUserCustomizationString>`.   
 Where `<ArrayHash>` is the 32-bytes output of `TupleHash(array)` (see [NIST SP 800-185](https://www.nist.gov/publications/sha-3-derived-functions-cshake-kmac-tuplehash-and-parallelhash)). By hashing the array, one can pick elements in multiple arrays for a single randomness beacon. Unless the `<OptionalUserCustomizationString>` is set, calling the function on the same array twice will always result in the same element being picked.
 
 **Option 2:**  
-We use the following DST to pick a single element from the array: `<app_name>-v<SDK_VERSION>-Pick-<OptionalUserCustomizationString>`. 
+We use the following DST to pick a single element from the array: `<app_name>-v<VERSION>-Pick-<OptionalUserCustomizationString>`. 
 
 Notice that if the `<OptionalUserCustomizationString>` parameter remains constant / is not used, this function can only be called on a single array per randomness beacon.
 
